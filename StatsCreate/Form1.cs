@@ -16,6 +16,18 @@ namespace StatsCreate
         {
             LoadUserBox();
         }
+        public void updateBox()
+        {
+            UserBox.Items.Clear();
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var list = collection.Find(x => true).ToList();
+            foreach (var item in list)
+            {
+                UserBox.Items.Add(item?.Name);
+            }
+        }
         private void LoadUserBox()
         {
             var client = new MongoClient();
@@ -30,13 +42,7 @@ namespace StatsCreate
             nConstitution.Text = dataGridView1.Rows[0].Cells[3].ToString();
             nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
 
-            int rows = dataGridView1.Rows.Count;
-            int r = 0;
-            for (int i = 0; i < rows; i++)
-            {
-                UserBox.Items.Add(dataGridView1[0, r].Value);
-                r++;
-            }
+            updateBox();
         }
 
         private void UserBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,15 +61,20 @@ namespace StatsCreate
         }
 
 
-        public void UserCont()
+        public void Inventory()
         {
-            User user = new User("Billy", "billy@mail.ru", 44);
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+
+            User user = new User();
             user.AddItem(new Item("Pen", 5));
             user.AddItem(new Item("Eraiser", 1));
             user.AddItem(new Item("Pencil", 3));
 
             DB.ReplaceByName("Billy", user);
         }
+
 
         private void heroBox_SelectedIndexChanged(object sender, EventArgs e)
         {

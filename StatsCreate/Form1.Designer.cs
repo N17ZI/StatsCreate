@@ -46,6 +46,7 @@ namespace StatsCreate
             this.nIntellicence = new System.Windows.Forms.NumericUpDown();
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
+            this.bAdd = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).BeginInit();
@@ -57,6 +58,7 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.bAdd);
             this.panel1.Controls.Add(this.bUpdate);
             this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.UserBox);
@@ -74,7 +76,7 @@ namespace StatsCreate
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(994, 415);
+            this.panel1.Size = new System.Drawing.Size(968, 354);
             this.panel1.TabIndex = 0;
             // 
             // bUpdate
@@ -205,11 +207,20 @@ namespace StatsCreate
             this.heroBox.TabIndex = 0;
             this.heroBox.SelectedIndexChanged += new System.EventHandler(this.heroBox_SelectedIndexChanged);
             // 
+            // bAdd
+            // 
+            this.bAdd.Location = new System.Drawing.Point(340, 277);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(603, 57);
+            this.bAdd.TabIndex = 15;
+            this.bAdd.Text = "Inventory";
+            this.bAdd.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(994, 415);
+            this.ClientSize = new System.Drawing.Size(968, 354);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -242,5 +253,6 @@ namespace StatsCreate
         private ComboBox UserBox;
         private DataGridView dataGridView1;
         private Button bUpdate;
+        private Button bAdd;
     }
 }
