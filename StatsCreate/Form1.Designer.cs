@@ -32,6 +32,8 @@ namespace StatsCreate
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bUpdate = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.UserBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,6 +47,7 @@ namespace StatsCreate
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nConstitution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nIntellicence)).BeginInit();
@@ -54,6 +57,8 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.bUpdate);
+            this.panel1.Controls.Add(this.dataGridView1);
             this.panel1.Controls.Add(this.UserBox);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -69,8 +74,30 @@ namespace StatsCreate
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(314, 342);
+            this.panel1.Size = new System.Drawing.Size(994, 415);
             this.panel1.TabIndex = 0;
+            // 
+            // bUpdate
+            // 
+            this.bUpdate.Location = new System.Drawing.Point(12, 65);
+            this.bUpdate.Name = "bUpdate";
+            this.bUpdate.Size = new System.Drawing.Size(287, 61);
+            this.bUpdate.TabIndex = 14;
+            this.bUpdate.Text = "Update";
+            this.bUpdate.UseVisualStyleBackColor = true;
+            this.bUpdate.Click += new System.EventHandler(this.bUpdate_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(340, 36);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowTemplate.Height = 25;
+            this.dataGridView1.Size = new System.Drawing.Size(603, 229);
+            this.dataGridView1.TabIndex = 13;
             // 
             // UserBox
             // 
@@ -79,6 +106,7 @@ namespace StatsCreate
             this.UserBox.Name = "UserBox";
             this.UserBox.Size = new System.Drawing.Size(287, 23);
             this.UserBox.TabIndex = 12;
+            this.UserBox.SelectedIndexChanged += new System.EventHandler(this.UserBox_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -181,13 +209,14 @@ namespace StatsCreate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(314, 342);
+            this.ClientSize = new System.Drawing.Size(994, 415);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nConstitution)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nIntellicence)).EndInit();
@@ -211,5 +240,7 @@ namespace StatsCreate
         private Label label1;
         private Label label5;
         private ComboBox UserBox;
+        private DataGridView dataGridView1;
+        private Button bUpdate;
     }
 }

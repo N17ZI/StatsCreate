@@ -26,6 +26,7 @@ namespace StatsCreate
             var collection = database.GetCollection<User>("Users");
             collection.InsertOne(user);
         }
+
         
         public static void FindAll()
         {
@@ -35,11 +36,10 @@ namespace StatsCreate
             var list = collection.Find(x => true).ToList();
             foreach (var item in list)
             {
-                Console.WriteLine($" {item?.Name} {item?.Type} {item?.Strength} {item?.Dexterity} {item?.Constitution} {item?.Intellicence}");
+                MessageBox.Show($" {item?.Name} {item?.Type} {item?.Strength} {item?.Dexterity} {item?.Constitution} {item?.Intellicence}");
             }
 
         }
-
 
         public static void Find(string name)
         {
@@ -49,13 +49,14 @@ namespace StatsCreate
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
 
             Console.WriteLine($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
-
+            MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
         }
-        public async Task<List<User>> GetAllUsers()
+        public static void ReplaceByName(string name, User user1)
         {
-            var usersCollection = ConnectToMongo<User>(UserCollection);
-            var results = await usersCollection.FindAsync(_ => true);
-            return results.ToList();
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            collection.ReplaceOne(x => x.Name == name, user1);
         }
     }
 }

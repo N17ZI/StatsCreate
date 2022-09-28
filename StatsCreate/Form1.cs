@@ -7,35 +7,63 @@ namespace StatsCreate
     {
         int index;
         double s1, s2, s3, s4;
+        
         public Form1()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            try
-            {
-                using (DB db = new DB())
-                {
-                    UserBox.DataSource = db.GetAllUsers();
-                    UserBox.ValueMember = "NameId";
-                    UserBox.DisplayMember = "Name";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"somethings wrong");
-            }
+            LoadUserBox();
         }
         private void LoadUserBox()
         {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            
+            List<User> user = collection.AsQueryable().ToList();
+            dataGridView1.DataSource = user;
 
-            /*AddDB.Find("Billy");
-            AddDB.Find(name: 1);
-            UserBox.Items.Add("Billy");*/
+            nStrenght.Text = dataGridView1.Rows[0].Cells[1].ToString();
+            nDexterity.Text = dataGridView1.Rows[0].Cells[2].ToString();
+            nConstitution.Text = dataGridView1.Rows[0].Cells[3].ToString();
+            nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
+
+            int rows = dataGridView1.Rows.Count;
+            int r = 0;
+            for (int i = 0; i < rows; i++)
+            {
+                UserBox.Items.Add(dataGridView1[0, r].Value);
+                r++;
+            }
+        }
+
+        private void UserBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
             
         }
 
+        private void bUpdate_Click(object sender, EventArgs e)
+        {
+            User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
+                                                            Convert.ToDouble(nDexterity.Text),
+                                                            Convert.ToDouble(nConstitution.Text),
+                                                            Convert.ToDouble(nIntellicence.Text));
+            DB.ReplaceByName(UserBox.Text, user);
+            LoadUserBox();
+        }
+
+
+        public void UserCont()
+        {
+            User user = new User("Billy", "billy@mail.ru", 44);
+            user.AddItem(new Item("Pen", 5));
+            user.AddItem(new Item("Eraiser", 1));
+            user.AddItem(new Item("Pencil", 3));
+
+            DB.ReplaceByName("Billy", user);
+        }
 
         private void heroBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -98,7 +126,6 @@ namespace StatsCreate
 
         public void bCreate_Click(object sender, EventArgs e)
         {
-            LoadUserBox();
             string name = UserBox.Text;
             string type = heroBox.Text;
 
@@ -111,10 +138,6 @@ namespace StatsCreate
             DB.AddToDB(user);
             try
             {
-                if (heroBox.SelectedItem.ToString() == "")
-                {
-                    MessageBox.Show("Something`s wrong");
-                }
                 if (heroBox.SelectedItem.ToString() == "Warrior")
                 {
                     double Damage = s1 * 5 + s2 + s3 / 10;
@@ -140,10 +163,9 @@ namespace StatsCreate
                     double Armor = (s2 * 0.5) + s3;
                     double MP = s4 * 2;
                     double MAH = s4 * 5;
-                    index = 3;
                     MessageBox.Show($"HP - {HP}\nDamage - {Damage}\nArmor - {Armor}\nMana - {MP}\nMagicDamage - {MAH}", caption: "Wizard");
                 }
-                
+                LoadUserBox();
             }
             catch
             {

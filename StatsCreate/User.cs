@@ -14,13 +14,34 @@ namespace StatsCreate
             Dexterity = dexterity;
             Constitution = constitution;
             Intellicence = intellicence;
+            Items = new List<Item>();
+        }
+        public User(string name, string email, int age)
+        {
+            Name = name;
+            Email = email;
+            Age = age;
+            Items = new List<Item>();
+        }
+        public User()
+        {
+            Name = Name;
+            Items = new List<Item>();
         }
         [BsonId]
+        [BsonIgnoreIfDefault]
         ObjectId _id;
         [BsonElement("name")]
         public string Name { get; set; }
         [BsonElement("type")]
+        [BsonIgnoreIfNull]
         public string Type { get; set; }
+        [BsonIgnoreIfNull]
+        public string Email { get; set; }
+        [BsonIgnoreIfNull]
+        public int Age { get; set; }
+        [BsonIgnoreIfDefault]
+        [BsonIgnoreIfNull]
         public double Strength { get; set; }
         [BsonIgnoreIfNull]
         public double Dexterity { get; set; }
@@ -28,5 +49,12 @@ namespace StatsCreate
         public double Constitution { get; set; }
         [BsonIgnoreIfNull]
         public double Intellicence { get; set; }
+
+        [BsonIgnoreIfNull]
+        List<Item> Items { get; set; }
+        public void AddItem(Item item)
+        {
+            Items.Add(item);
+        }
     }
 }
