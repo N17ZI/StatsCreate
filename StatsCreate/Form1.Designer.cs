@@ -32,6 +32,7 @@ namespace StatsCreate
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bAdd = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.UserBox = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,7 @@ namespace StatsCreate
             this.nIntellicence = new System.Windows.Forms.NumericUpDown();
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
-            this.bAdd = new System.Windows.Forms.Button();
+            this.bLevelUP = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).BeginInit();
@@ -58,6 +59,7 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.bLevelUP);
             this.panel1.Controls.Add(this.bAdd);
             this.panel1.Controls.Add(this.bUpdate);
             this.panel1.Controls.Add(this.dataGridView1);
@@ -76,8 +78,18 @@ namespace StatsCreate
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(968, 354);
+            this.panel1.Size = new System.Drawing.Size(947, 344);
             this.panel1.TabIndex = 0;
+            // 
+            // bAdd
+            // 
+            this.bAdd.Location = new System.Drawing.Point(627, 277);
+            this.bAdd.Name = "bAdd";
+            this.bAdd.Size = new System.Drawing.Size(316, 57);
+            this.bAdd.TabIndex = 15;
+            this.bAdd.Text = "Inventory";
+            this.bAdd.UseVisualStyleBackColor = true;
+            this.bAdd.Click += new System.EventHandler(this.bAdd_Click);
             // 
             // bUpdate
             // 
@@ -170,28 +182,28 @@ namespace StatsCreate
             // 
             this.nDexterity.Location = new System.Drawing.Point(144, 190);
             this.nDexterity.Name = "nDexterity";
-            this.nDexterity.Size = new System.Drawing.Size(118, 23);
+            this.nDexterity.Size = new System.Drawing.Size(155, 23);
             this.nDexterity.TabIndex = 4;
             // 
             // nConstitution
             // 
             this.nConstitution.Location = new System.Drawing.Point(144, 219);
             this.nConstitution.Name = "nConstitution";
-            this.nConstitution.Size = new System.Drawing.Size(118, 23);
+            this.nConstitution.Size = new System.Drawing.Size(155, 23);
             this.nConstitution.TabIndex = 3;
             // 
             // nIntellicence
             // 
             this.nIntellicence.Location = new System.Drawing.Point(144, 248);
             this.nIntellicence.Name = "nIntellicence";
-            this.nIntellicence.Size = new System.Drawing.Size(118, 23);
+            this.nIntellicence.Size = new System.Drawing.Size(155, 23);
             this.nIntellicence.TabIndex = 2;
             // 
             // nStrenght
             // 
             this.nStrenght.Location = new System.Drawing.Point(144, 161);
             this.nStrenght.Name = "nStrenght";
-            this.nStrenght.Size = new System.Drawing.Size(118, 23);
+            this.nStrenght.Size = new System.Drawing.Size(155, 23);
             this.nStrenght.TabIndex = 1;
             // 
             // heroBox
@@ -207,20 +219,21 @@ namespace StatsCreate
             this.heroBox.TabIndex = 0;
             this.heroBox.SelectedIndexChanged += new System.EventHandler(this.heroBox_SelectedIndexChanged);
             // 
-            // bAdd
+            // bLevelUP
             // 
-            this.bAdd.Location = new System.Drawing.Point(340, 277);
-            this.bAdd.Name = "bAdd";
-            this.bAdd.Size = new System.Drawing.Size(603, 57);
-            this.bAdd.TabIndex = 15;
-            this.bAdd.Text = "Inventory";
-            this.bAdd.UseVisualStyleBackColor = true;
+            this.bLevelUP.Location = new System.Drawing.Point(340, 277);
+            this.bLevelUP.Name = "bLevelUP";
+            this.bLevelUP.Size = new System.Drawing.Size(281, 55);
+            this.bLevelUP.TabIndex = 16;
+            this.bLevelUP.Text = "Level UP";
+            this.bLevelUP.UseVisualStyleBackColor = true;
+            this.bLevelUP.Click += new System.EventHandler(this.bLevelUP_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(968, 354);
+            this.ClientSize = new System.Drawing.Size(947, 344);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -254,5 +267,6 @@ namespace StatsCreate
         private DataGridView dataGridView1;
         private Button bUpdate;
         private Button bAdd;
+        private Button bLevelUP;
     }
 }

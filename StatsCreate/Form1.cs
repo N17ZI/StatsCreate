@@ -5,7 +5,6 @@ namespace StatsCreate
 {
     public partial class Form1 : Form
     {
-        int index;
         double s1, s2, s3, s4;
         
         public Form1()
@@ -16,40 +15,10 @@ namespace StatsCreate
         {
             LoadUserBox();
         }
-        public void updateBox()
-        {
-            UserBox.Items.Clear();
-            var client = new MongoClient();
-            var database = client.GetDatabase("CurrentlyDB");
-            var collection = database.GetCollection<User>("Users");
-            var list = collection.Find(x => true).ToList();
-            foreach (var item in list)
-            {
-                UserBox.Items.Add(item?.Name);
-            }
-        }
-        private void LoadUserBox()
-        {
-            var client = new MongoClient();
-            var database = client.GetDatabase("CurrentlyDB");
-            var collection = database.GetCollection<User>("Users");
-            
-            List<User> user = collection.AsQueryable().ToList();
-            dataGridView1.DataSource = user;
-
-            nStrenght.Text = dataGridView1.Rows[0].Cells[1].ToString();
-            nDexterity.Text = dataGridView1.Rows[0].Cells[2].ToString();
-            nConstitution.Text = dataGridView1.Rows[0].Cells[3].ToString();
-            nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
-
-            updateBox();
-        }
-
         private void UserBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            UserBoxChange();
         }
-
         private void bUpdate_Click(object sender, EventArgs e)
         {
             User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
@@ -59,23 +28,6 @@ namespace StatsCreate
             DB.ReplaceByName(UserBox.Text, user);
             LoadUserBox();
         }
-
-
-        public void Inventory()
-        {
-            var client = new MongoClient();
-            var database = client.GetDatabase("CurrentlyDB");
-            var collection = database.GetCollection<User>("Users");
-
-            User user = new User();
-            user.AddItem(new Item("Pen", 5));
-            user.AddItem(new Item("Eraiser", 1));
-            user.AddItem(new Item("Pencil", 3));
-
-            DB.ReplaceByName("Billy", user);
-        }
-
-
         private void heroBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Warrior warrior = new Warrior();
@@ -134,7 +86,6 @@ namespace StatsCreate
                 MessageBox.Show("Something`s wrong");
             }
         }
-
         public void bCreate_Click(object sender, EventArgs e)
         {
             string name = UserBox.Text;
@@ -182,6 +133,87 @@ namespace StatsCreate
             {
                 MessageBox.Show("Something`s wrong");
             }
+        }
+        public void updateBox()
+        {
+            UserBox.Items.Clear();
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var list = collection.Find(x => true).ToList();
+            foreach (var item in list)
+            {
+                UserBox.Items.Add(item?.Name);
+            }
+        }
+
+        private void bAdd_Click(object sender, EventArgs e)
+        {
+            const string caption = "Items";
+            var result = MessageBox.Show("Add pen to inventory selected hero?", caption ,MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Inventory();
+            }
+            if(result == DialogResult.No)
+            {
+                MessageBox.Show("Cancelled");
+            }
+        }
+
+        private void bLevelUP_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Level()
+        {
+
+        }
+        public void Inventory()
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            string name = UserBox.Text;
+
+            User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
+                                                            Convert.ToDouble(nDexterity.Text),
+                                                            Convert.ToDouble(nConstitution.Text),
+                                                            Convert.ToDouble(nIntellicence.Text));
+            user.AddItem(new Item("Pen", 5));
+
+            DB.ReplaceByName(UserBox.Text, user);
+        }
+        private void LoadUserBox()
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+
+            List<User> user = collection.AsQueryable().ToList();
+            dataGridView1.DataSource = user;
+
+            nStrenght.Text = dataGridView1.Rows[0].Cells[1].ToString();
+            nDexterity.Text = dataGridView1.Rows[0].Cells[2].ToString();
+            nConstitution.Text = dataGridView1.Rows[0].Cells[3].ToString();
+            nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
+
+            updateBox();
+        }
+        private void UserBoxChange()
+        {
+            string type = heroBox.Text;
+
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var one = collection.Find(x => x.Name == UserBox.SelectedItem.ToString()).FirstOrDefault();
+
+            heroBox.Text = Convert.ToString(one?.Type);
+            nStrenght.Text = Convert.ToString(one?.Strength);
+            nDexterity.Text = Convert.ToString(one?.Dexterity);
+            nConstitution.Text = Convert.ToString(one?.Constitution);
+            nIntellicence.Text = Convert.ToString(one?.Intellicence);
         }
     }
 }
