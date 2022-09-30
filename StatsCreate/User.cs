@@ -6,7 +6,7 @@ namespace StatsCreate
 {
     internal class User
     {
-        public User(string name,string type,double strength, double dexterity, double constitution, double intellicence)
+        public User(string name,string type,double strength, double dexterity, double constitution, double intellicence,double xp)
         {
             this.Name = name;
             Type = type;
@@ -14,20 +14,16 @@ namespace StatsCreate
             Dexterity = dexterity;
             Constitution = constitution;
             Intellicence = intellicence;
+            Xp = xp;
             Items = new List<Item>();
         }
-        public User(string name, string email, int age)
+        public User(string name, double xp)
         {
             Name = name;
-            Email = email;
-            Age = age;
+            Xp = xp;
             Items = new List<Item>();
         }
-        public User()
-        {
-            Name = Name;
-            Items = new List<Item>();
-        }
+
         [BsonId]
         [BsonIgnoreIfDefault]
         ObjectId _id;
@@ -37,9 +33,7 @@ namespace StatsCreate
         [BsonIgnoreIfNull]
         public string Type { get; set; }
         [BsonIgnoreIfNull]
-        public string Email { get; set; }
-        [BsonIgnoreIfNull]
-        public int Age { get; set; }
+        public string Skills { get; set; }
         [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public double Strength { get; set; }
@@ -49,6 +43,8 @@ namespace StatsCreate
         public double Constitution { get; set; }
         [BsonIgnoreIfNull]
         public double Intellicence { get; set; }
+        [BsonIgnoreIfNull]
+        public double Xp { get; set; }
 
         [BsonIgnoreIfNull]
         List<Item> Items { get; set; }
@@ -56,5 +52,7 @@ namespace StatsCreate
         {
             Items.Add(item);
         }
+        [BsonIgnoreIfNull]
+        public double level { get; set; }
     }
 }

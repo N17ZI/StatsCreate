@@ -6,10 +6,12 @@ namespace StatsCreate
     public partial class Form1 : Form
     {
         double s1, s2, s3, s4;
+        static double pts = 0;
         
         public Form1()
         {
             InitializeComponent();
+            bLevelUP.Visible = false;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -24,8 +26,18 @@ namespace StatsCreate
             User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
-                                                            Convert.ToDouble(nIntellicence.Text));
+                                                            Convert.ToDouble(nIntellicence.Text),
+                                                            Convert.ToDouble(nXp.Text));
             DB.ReplaceByName(UserBox.Text, user);
+
+            SendBetween.Username = UserBox.Text;
+            SendBetween.hero = heroBox.Text;
+            SendBetween.strenght = nStrenght.Text;
+            SendBetween.dexter = nDexterity.Text;
+            SendBetween.constit = nConstitution.Text;
+            SendBetween.intellect = nIntellicence.Text;
+            SendBetween.exp = nXp.Text;
+
             LoadUserBox();
         }
         private void heroBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,7 +108,7 @@ namespace StatsCreate
             s3 = Convert.ToDouble(nConstitution.Text);
             s4 = Convert.ToDouble(nIntellicence.Text);
 
-            User user = new User(name, type, s1, s2, s3, s4);
+            User user = new User(name, type, s1, s2, s3, s4, Convert.ToDouble(nXp));
             DB.AddToDB(user);
             try
             {
@@ -137,6 +149,7 @@ namespace StatsCreate
         public void updateBox()
         {
             UserBox.Items.Clear();
+            Level();
             var client = new MongoClient();
             var database = client.GetDatabase("CurrentlyDB");
             var collection = database.GetCollection<User>("Users");
@@ -163,11 +176,24 @@ namespace StatsCreate
 
         private void bLevelUP_Click(object sender, EventArgs e)
         {
-
+            Form2 SkillDialog = new Form2();
+            SkillDialog.Show();
         }
         private void Level()
         {
-
+            if (nXp.Value >= 3000)
+            {
+                bLevelUP.Visible = true;
+                bLevelUP.Enabled = true;
+                Lv1.Visible = true;
+                lv2.Visible = true;
+                pts = pts + 1;
+                lv2.Text = Convert.ToString(pts);
+            }
+            else
+            {
+                Console.WriteLine("w");
+            }
         }
         public void Inventory()
         {
@@ -179,7 +205,8 @@ namespace StatsCreate
             User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
-                                                            Convert.ToDouble(nIntellicence.Text));
+                                                            Convert.ToDouble(nIntellicence.Text),
+                                                            Convert.ToDouble(nXp.Text));
             user.AddItem(new Item("Pen", 5));
 
             DB.ReplaceByName(UserBox.Text, user);
@@ -197,6 +224,7 @@ namespace StatsCreate
             nDexterity.Text = dataGridView1.Rows[0].Cells[2].ToString();
             nConstitution.Text = dataGridView1.Rows[0].Cells[3].ToString();
             nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
+            nXp.Text = dataGridView1.Rows[0].Cells[5].ToString();
 
             updateBox();
         }
@@ -214,6 +242,7 @@ namespace StatsCreate
             nDexterity.Text = Convert.ToString(one?.Dexterity);
             nConstitution.Text = Convert.ToString(one?.Constitution);
             nIntellicence.Text = Convert.ToString(one?.Intellicence);
+            nXp.Value = Convert.ToDecimal(one?.Xp);
         }
     }
 }

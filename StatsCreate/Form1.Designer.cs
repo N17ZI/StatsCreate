@@ -32,6 +32,9 @@ namespace StatsCreate
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nXp = new System.Windows.Forms.NumericUpDown();
+            this.bLevelUP = new System.Windows.Forms.Button();
             this.bAdd = new System.Windows.Forms.Button();
             this.bUpdate = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -47,8 +50,10 @@ namespace StatsCreate
             this.nIntellicence = new System.Windows.Forms.NumericUpDown();
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
-            this.bLevelUP = new System.Windows.Forms.Button();
+            this.Lv1 = new System.Windows.Forms.Label();
+            this.lv2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nXp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nConstitution)).BeginInit();
@@ -59,6 +64,10 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.lv2);
+            this.panel1.Controls.Add(this.Lv1);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.nXp);
             this.panel1.Controls.Add(this.bLevelUP);
             this.panel1.Controls.Add(this.bAdd);
             this.panel1.Controls.Add(this.bUpdate);
@@ -78,12 +87,44 @@ namespace StatsCreate
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(947, 344);
+            this.panel1.Size = new System.Drawing.Size(951, 395);
             this.panel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 114);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 15);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Type";
+            // 
+            // nXp
+            // 
+            this.nXp.Location = new System.Drawing.Point(144, 277);
+            this.nXp.Maximum = new decimal(new int[] {
+            3333333,
+            0,
+            0,
+            0});
+            this.nXp.Name = "nXp";
+            this.nXp.Size = new System.Drawing.Size(155, 23);
+            this.nXp.TabIndex = 17;
+            // 
+            // bLevelUP
+            // 
+            this.bLevelUP.BackColor = System.Drawing.Color.Gold;
+            this.bLevelUP.Location = new System.Drawing.Point(12, 65);
+            this.bLevelUP.Name = "bLevelUP";
+            this.bLevelUP.Size = new System.Drawing.Size(287, 44);
+            this.bLevelUP.TabIndex = 16;
+            this.bLevelUP.Text = "Level UP";
+            this.bLevelUP.UseVisualStyleBackColor = false;
+            this.bLevelUP.Click += new System.EventHandler(this.bLevelUP_Click);
             // 
             // bAdd
             // 
-            this.bAdd.Location = new System.Drawing.Point(627, 277);
+            this.bAdd.Location = new System.Drawing.Point(627, 326);
             this.bAdd.Name = "bAdd";
             this.bAdd.Size = new System.Drawing.Size(316, 57);
             this.bAdd.TabIndex = 15;
@@ -93,9 +134,9 @@ namespace StatsCreate
             // 
             // bUpdate
             // 
-            this.bUpdate.Location = new System.Drawing.Point(12, 65);
+            this.bUpdate.Location = new System.Drawing.Point(334, 326);
             this.bUpdate.Name = "bUpdate";
-            this.bUpdate.Size = new System.Drawing.Size(287, 61);
+            this.bUpdate.Size = new System.Drawing.Size(287, 57);
             this.bUpdate.TabIndex = 14;
             this.bUpdate.Text = "Update";
             this.bUpdate.UseVisualStyleBackColor = true;
@@ -170,7 +211,7 @@ namespace StatsCreate
             // 
             // bCreate
             // 
-            this.bCreate.Location = new System.Drawing.Point(12, 277);
+            this.bCreate.Location = new System.Drawing.Point(12, 326);
             this.bCreate.Name = "bCreate";
             this.bCreate.Size = new System.Drawing.Size(287, 57);
             this.bCreate.TabIndex = 5;
@@ -219,27 +260,40 @@ namespace StatsCreate
             this.heroBox.TabIndex = 0;
             this.heroBox.SelectedIndexChanged += new System.EventHandler(this.heroBox_SelectedIndexChanged);
             // 
-            // bLevelUP
+            // Lv1
             // 
-            this.bLevelUP.Location = new System.Drawing.Point(340, 277);
-            this.bLevelUP.Name = "bLevelUP";
-            this.bLevelUP.Size = new System.Drawing.Size(281, 55);
-            this.bLevelUP.TabIndex = 16;
-            this.bLevelUP.Text = "Level UP";
-            this.bLevelUP.UseVisualStyleBackColor = true;
-            this.bLevelUP.Click += new System.EventHandler(this.bLevelUP_Click);
+            this.Lv1.AutoSize = true;
+            this.Lv1.ForeColor = System.Drawing.Color.Red;
+            this.Lv1.Location = new System.Drawing.Point(340, 279);
+            this.Lv1.Name = "Lv1";
+            this.Lv1.Size = new System.Drawing.Size(114, 15);
+            this.Lv1.TabIndex = 19;
+            this.Lv1.Text = "You have free points";
+            this.Lv1.Visible = false;
+            // 
+            // lv2
+            // 
+            this.lv2.AutoSize = true;
+            this.lv2.BackColor = System.Drawing.Color.Yellow;
+            this.lv2.Location = new System.Drawing.Point(460, 279);
+            this.lv2.Name = "lv2";
+            this.lv2.Size = new System.Drawing.Size(13, 15);
+            this.lv2.TabIndex = 20;
+            this.lv2.Text = "0";
+            this.lv2.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 344);
+            this.ClientSize = new System.Drawing.Size(951, 395);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nXp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nDexterity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nConstitution)).EndInit();
@@ -268,5 +322,9 @@ namespace StatsCreate
         private Button bUpdate;
         private Button bAdd;
         private Button bLevelUP;
+        private NumericUpDown nXp;
+        private Label label6;
+        private Label lv2;
+        private Label Lv1;
     }
 }
