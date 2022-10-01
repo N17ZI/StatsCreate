@@ -15,5 +15,6 @@ namespace StatsCreate
         public static string strenght;
         public static string constit;
         public static string exp;
+
     }
 }

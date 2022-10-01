@@ -19,15 +19,17 @@ namespace StatsCreate
             InitializeComponent();
         }
 
-        private void bColdSnap_Click(object sender, EventArgs e)
-        {
             User user = new User(SendBetween.Username, SendBetween.hero, Convert.ToDouble(SendBetween.strenght),
                                                             Convert.ToDouble(SendBetween.dexter),
                                                             Convert.ToDouble(SendBetween.constit),
                                                             Convert.ToDouble(SendBetween.intellect),
-                                                            Convert.ToDouble(SendBetween.exp));
+                                                            Convert.ToDouble(SendBetween.exp), 1);
+
+        private void bColdSnap_Click(object sender, EventArgs e)
+        {
             bColdSnap.BackColor = Color.Green;
-            bColdSnap.Enabled = false;
+            string text = bColdSnap.Name;
+            user.AddSkill(new Skill("Cold Snap"));
             DB.ReplaceByName(SendBetween.Username, user);
         }
     }

@@ -6,7 +6,8 @@ namespace StatsCreate
 {
     internal class User
     {
-        public User(string name,string type,double strength, double dexterity, double constitution, double intellicence,double xp)
+        public User(string name,string type,double strength, double dexterity, double constitution,
+            double intellicence,double xp,double lvl)
         {
             this.Name = name;
             Type = type;
@@ -15,12 +16,16 @@ namespace StatsCreate
             Constitution = constitution;
             Intellicence = intellicence;
             Xp = xp;
+            Lvl = lvl;
+            Skills = new List<Skill>();
             Items = new List<Item>();
         }
-        public User(string name, double xp)
+        public User(string name, double xp,double lvl)
         {
             Name = name;
             Xp = xp;
+            Lvl = lvl;
+            Skills = new List<Skill>();
             Items = new List<Item>();
         }
 
@@ -33,7 +38,7 @@ namespace StatsCreate
         [BsonIgnoreIfNull]
         public string Type { get; set; }
         [BsonIgnoreIfNull]
-        public string Skills { get; set; }
+        public double Lvl { get; set; }
         [BsonIgnoreIfDefault]
         [BsonIgnoreIfNull]
         public double Strength { get; set; }
@@ -53,6 +58,10 @@ namespace StatsCreate
             Items.Add(item);
         }
         [BsonIgnoreIfNull]
-        public double level { get; set; }
+        List<Skill> Skills { get; set; }
+        public void AddSkill(Skill skill)
+        {
+            Skills.Add(skill);
+        }
     }
 }

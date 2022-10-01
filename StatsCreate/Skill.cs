@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace StatsCreate
 {
-    internal class Skills
+    internal class Skill
     {
-        public Skills(string skillName)
+        public Skill(string skillName)
         {
             SkillName = skillName;
         }

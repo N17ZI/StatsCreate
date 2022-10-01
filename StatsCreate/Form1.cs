@@ -7,7 +7,8 @@ namespace StatsCreate
     {
         double s1, s2, s3, s4;
         static double pts = 0;
-        
+        static double r = 1;
+
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,8 @@ namespace StatsCreate
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
-                                                            Convert.ToDouble(nXp.Text));
+                                                            Convert.ToDouble(nXp.Text),
+                                                            1);
             DB.ReplaceByName(UserBox.Text, user);
 
             SendBetween.Username = UserBox.Text;
@@ -38,6 +40,7 @@ namespace StatsCreate
             SendBetween.intellect = nIntellicence.Text;
             SendBetween.exp = nXp.Text;
 
+            LvlUp();
             LoadUserBox();
         }
         private void heroBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,13 +105,16 @@ namespace StatsCreate
         {
             string name = UserBox.Text;
             string type = heroBox.Text;
+            double xp = Convert.ToDouble(nXp.Value);
+            xp = 1000;
+            const double lvl = 1;
 
             s1 = Convert.ToDouble(nStrenght.Text);
             s2 = Convert.ToDouble(nDexterity.Text);
             s3 = Convert.ToDouble(nConstitution.Text);
             s4 = Convert.ToDouble(nIntellicence.Text);
 
-            User user = new User(name, type, s1, s2, s3, s4, Convert.ToDouble(nXp));
+            User user = new User(name, type, s1, s2, s3, s4, xp,lvl);
             DB.AddToDB(user);
             try
             {
@@ -206,7 +212,8 @@ namespace StatsCreate
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
-                                                            Convert.ToDouble(nXp.Text));
+                                                            Convert.ToDouble(nXp.Text), 1
+                                                            );
             user.AddItem(new Item("Pen", 5));
 
             DB.ReplaceByName(UserBox.Text, user);
@@ -226,6 +233,8 @@ namespace StatsCreate
             nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
             nXp.Text = dataGridView1.Rows[0].Cells[5].ToString();
 
+
+            
             updateBox();
         }
         private void UserBoxChange()
@@ -243,6 +252,29 @@ namespace StatsCreate
             nConstitution.Text = Convert.ToString(one?.Constitution);
             nIntellicence.Text = Convert.ToString(one?.Intellicence);
             nXp.Value = Convert.ToDecimal(one?.Xp);
+        }
+        public void LvlUp()
+        {
+            
+            if (nXp.Value >= 1000)
+            {
+                
+                for (int exp = Convert.ToInt32(nXp.Value); exp > 1000; exp--)
+                { 
+                    exp -= 1000;
+                    User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
+                                                            Convert.ToDouble(nDexterity.Text),
+                                                            Convert.ToDouble(nConstitution.Text),
+                                                            Convert.ToDouble(nIntellicence.Text),
+                                                            exp, r++
+                                                            );
+                    DB.ReplaceByName(UserBox.Text, user);
+                }
+            }
+            else
+            {
+
+            }
         }
     }
 }
