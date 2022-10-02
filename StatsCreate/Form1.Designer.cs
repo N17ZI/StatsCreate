@@ -32,6 +32,7 @@ namespace StatsCreate
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nXp = new System.Windows.Forms.NumericUpDown();
             this.bLevelUP = new System.Windows.Forms.Button();
@@ -50,8 +51,7 @@ namespace StatsCreate
             this.nIntellicence = new System.Windows.Forms.NumericUpDown();
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
-            this.Lv1 = new System.Windows.Forms.Label();
-            this.lv2 = new System.Windows.Forms.Label();
+            this.bGet1k = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nXp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,8 +64,8 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.panel1.Controls.Add(this.lv2);
-            this.panel1.Controls.Add(this.Lv1);
+            this.panel1.Controls.Add(this.bGet1k);
+            this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.nXp);
             this.panel1.Controls.Add(this.bLevelUP);
@@ -90,6 +90,15 @@ namespace StatsCreate
             this.panel1.Size = new System.Drawing.Size(951, 395);
             this.panel1.TabIndex = 0;
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 285);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(21, 15);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "XP";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -101,7 +110,7 @@ namespace StatsCreate
             // 
             // nXp
             // 
-            this.nXp.Location = new System.Drawing.Point(144, 277);
+            this.nXp.Location = new System.Drawing.Point(144, 283);
             this.nXp.Maximum = new decimal(new int[] {
             3333333,
             0,
@@ -260,27 +269,15 @@ namespace StatsCreate
             this.heroBox.TabIndex = 0;
             this.heroBox.SelectedIndexChanged += new System.EventHandler(this.heroBox_SelectedIndexChanged);
             // 
-            // Lv1
+            // bGet1k
             // 
-            this.Lv1.AutoSize = true;
-            this.Lv1.ForeColor = System.Drawing.Color.Red;
-            this.Lv1.Location = new System.Drawing.Point(340, 279);
-            this.Lv1.Name = "Lv1";
-            this.Lv1.Size = new System.Drawing.Size(114, 15);
-            this.Lv1.TabIndex = 19;
-            this.Lv1.Text = "You have free points";
-            this.Lv1.Visible = false;
-            // 
-            // lv2
-            // 
-            this.lv2.AutoSize = true;
-            this.lv2.BackColor = System.Drawing.Color.Yellow;
-            this.lv2.Location = new System.Drawing.Point(460, 279);
-            this.lv2.Name = "lv2";
-            this.lv2.Size = new System.Drawing.Size(13, 15);
-            this.lv2.TabIndex = 20;
-            this.lv2.Text = "0";
-            this.lv2.Visible = false;
+            this.bGet1k.Location = new System.Drawing.Point(334, 271);
+            this.bGet1k.Name = "bGet1k";
+            this.bGet1k.Size = new System.Drawing.Size(287, 49);
+            this.bGet1k.TabIndex = 20;
+            this.bGet1k.Text = "Get 1000 XP";
+            this.bGet1k.UseVisualStyleBackColor = true;
+            this.bGet1k.Click += new System.EventHandler(this.bGet1k_Click);
             // 
             // Form1
             // 
@@ -324,7 +321,7 @@ namespace StatsCreate
         private Button bLevelUP;
         private NumericUpDown nXp;
         private Label label6;
-        private Label lv2;
-        private Label Lv1;
+        private Label label7;
+        private Button bGet1k;
     }
 }

@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.bColdSnap = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.bTornado = new System.Windows.Forms.Button();
+            this.bBlast = new System.Windows.Forms.Button();
+            this.bAlacrity = new System.Windows.Forms.Button();
+            this.bGhostWalk = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.pts = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bColdSnap
@@ -50,41 +51,45 @@
             this.bColdSnap.UseVisualStyleBackColor = true;
             this.bColdSnap.Click += new System.EventHandler(this.bColdSnap_Click);
             // 
-            // button2
+            // bTornado
             // 
-            this.button2.Location = new System.Drawing.Point(77, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(59, 54);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Tornado";
-            this.button2.UseVisualStyleBackColor = true;
+            this.bTornado.Location = new System.Drawing.Point(77, 12);
+            this.bTornado.Name = "bTornado";
+            this.bTornado.Size = new System.Drawing.Size(59, 54);
+            this.bTornado.TabIndex = 1;
+            this.bTornado.Text = "Tornado";
+            this.bTornado.UseVisualStyleBackColor = true;
+            this.bTornado.Click += new System.EventHandler(this.bTornado_Click);
             // 
-            // button3
+            // bBlast
             // 
-            this.button3.Location = new System.Drawing.Point(142, 12);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(59, 54);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Blast";
-            this.button3.UseVisualStyleBackColor = true;
+            this.bBlast.Location = new System.Drawing.Point(142, 12);
+            this.bBlast.Name = "bBlast";
+            this.bBlast.Size = new System.Drawing.Size(59, 54);
+            this.bBlast.TabIndex = 2;
+            this.bBlast.Text = "Blast";
+            this.bBlast.UseVisualStyleBackColor = true;
+            this.bBlast.Click += new System.EventHandler(this.bBlast_Click);
             // 
-            // button4
+            // bAlacrity
             // 
-            this.button4.Location = new System.Drawing.Point(207, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(59, 54);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Alacrity";
-            this.button4.UseVisualStyleBackColor = true;
+            this.bAlacrity.Location = new System.Drawing.Point(207, 12);
+            this.bAlacrity.Name = "bAlacrity";
+            this.bAlacrity.Size = new System.Drawing.Size(59, 54);
+            this.bAlacrity.TabIndex = 3;
+            this.bAlacrity.Text = "Alacrity";
+            this.bAlacrity.UseVisualStyleBackColor = true;
+            this.bAlacrity.Click += new System.EventHandler(this.bAlacrity_Click);
             // 
-            // button5
+            // bGhostWalk
             // 
-            this.button5.Location = new System.Drawing.Point(272, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(59, 54);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Ghost Walk";
-            this.button5.UseVisualStyleBackColor = true;
+            this.bGhostWalk.Location = new System.Drawing.Point(272, 12);
+            this.bGhostWalk.Name = "bGhostWalk";
+            this.bGhostWalk.Size = new System.Drawing.Size(59, 54);
+            this.bGhostWalk.TabIndex = 4;
+            this.bGhostWalk.Text = "Ghost Walk";
+            this.bGhostWalk.UseVisualStyleBackColor = true;
+            this.bGhostWalk.Click += new System.EventHandler(this.bGhostWalk_Click);
             // 
             // button6
             // 
@@ -131,38 +136,50 @@
             this.button10.Text = "Forge Spirit";
             this.button10.UseVisualStyleBackColor = true;
             // 
+            // pts
+            // 
+            this.pts.AutoSize = true;
+            this.pts.Location = new System.Drawing.Point(12, 143);
+            this.pts.Name = "pts";
+            this.pts.Size = new System.Drawing.Size(13, 15);
+            this.pts.TabIndex = 10;
+            this.pts.Text = "0";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(343, 167);
+            this.Controls.Add(this.pts);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.bGhostWalk);
+            this.Controls.Add(this.bAlacrity);
+            this.Controls.Add(this.bBlast);
+            this.Controls.Add(this.bTornado);
             this.Controls.Add(this.bColdSnap);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private Button bColdSnap;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private Button button5;
+        private Button bTornado;
+        private Button bBlast;
+        private Button bAlacrity;
+        private Button bGhostWalk;
         private Button button6;
         private Button button7;
         private Button button8;
         private Button button9;
         private Button button10;
+        private Label pts;
     }
 }

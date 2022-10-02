@@ -6,8 +6,8 @@ namespace StatsCreate
     public partial class Form1 : Form
     {
         double s1, s2, s3, s4;
-        static double pts = 0;
         static double r = 1;
+        
 
         public Form1()
         {
@@ -39,6 +39,7 @@ namespace StatsCreate
             SendBetween.constit = nConstitution.Text;
             SendBetween.intellect = nIntellicence.Text;
             SendBetween.exp = nXp.Text;
+            SendBetween.lvl = r;
 
             LvlUp();
             LoadUserBox();
@@ -191,14 +192,10 @@ namespace StatsCreate
             {
                 bLevelUP.Visible = true;
                 bLevelUP.Enabled = true;
-                Lv1.Visible = true;
-                lv2.Visible = true;
-                pts = pts + 1;
-                lv2.Text = Convert.ToString(pts);
             }
             else
             {
-                Console.WriteLine("w");
+                bLevelUP.Visible = false;
             }
         }
         public void Inventory()
@@ -218,6 +215,20 @@ namespace StatsCreate
 
             DB.ReplaceByName(UserBox.Text, user);
         }
+
+        private void bGet1k_Click(object sender, EventArgs e)
+        {
+            nXp.Value += 1000;
+            User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
+                                                            Convert.ToDouble(nDexterity.Text),
+                                                            Convert.ToDouble(nConstitution.Text),
+                                                            Convert.ToDouble(nIntellicence.Text),
+                                                            Convert.ToDouble(nXp.Text), r++
+                                                            );
+            DB.ReplaceByName(UserBox.Text, user);
+            LoadUserBox();
+        }
+
         private void LoadUserBox()
         {
             var client = new MongoClient();
@@ -233,8 +244,6 @@ namespace StatsCreate
             nIntellicence.Text = dataGridView1.Rows[0].Cells[4].ToString();
             nXp.Text = dataGridView1.Rows[0].Cells[5].ToString();
 
-
-            
             updateBox();
         }
         private void UserBoxChange()
@@ -256,24 +265,25 @@ namespace StatsCreate
         public void LvlUp()
         {
             
-            if (nXp.Value >= 1000)
+            if (nXp.Value >= 3000)
             {
                 
                 for (int exp = Convert.ToInt32(nXp.Value); exp > 1000; exp--)
-                { 
+                {
+                    double dad = r++;
                     exp -= 1000;
                     User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
-                                                            exp, r++
+                                                            exp, dad
                                                             );
                     DB.ReplaceByName(UserBox.Text, user);
                 }
             }
             else
             {
-
+                
             }
         }
     }
