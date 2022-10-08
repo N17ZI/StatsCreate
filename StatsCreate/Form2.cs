@@ -38,7 +38,7 @@ namespace StatsCreate
         }
         private void bColdSnap_Click(object sender, EventArgs e)
         {
-            if (Up >= 0)
+            if (Up != 0)
             {
                 bColdSnap.BackColor = Color.Green;
                 bColdSnap.Enabled = false;
@@ -56,7 +56,7 @@ namespace StatsCreate
 
         private void bTornado_Click(object sender, EventArgs e)
         {
-            if (Up >= 0) 
+            if (Up != 0) 
             {
                 bTornado.BackColor = Color.Green;
                 bTornado.Enabled = false;
@@ -74,7 +74,7 @@ namespace StatsCreate
 
         private void bBlast_Click(object sender, EventArgs e)
         {
-            if (Up >= 0)
+            if (Up != 0)
             {
                 bBlast.BackColor = Color.Green;
                 bBlast.Enabled = false;
@@ -92,7 +92,7 @@ namespace StatsCreate
 
         private void bAlacrity_Click(object sender, EventArgs e)
         {
-            if (Up >= 0)
+            if (Up != 0)
             {
                 bAlacrity.BackColor = Color.Green;
                 bAlacrity.Enabled = false;
@@ -110,7 +110,7 @@ namespace StatsCreate
 
         private void bGhostWalk_Click(object sender, EventArgs e)
         {
-            if (Up >= 0)
+            if (Up != 0)
             {
                 bGhostWalk.BackColor = Color.Green;
                 bGhostWalk.Enabled = false;

@@ -19,6 +19,7 @@ namespace StatsCreate
             Lvl = lvl;
             Skills = new List<Skill>();
             Items = new List<Item>();
+            Equipments = new List<Equipment>();
         }
         public User(string name, double xp,double lvl)
         {
@@ -27,6 +28,7 @@ namespace StatsCreate
             Lvl = lvl;
             Skills = new List<Skill>();
             Items = new List<Item>();
+            Equipments = new List<Equipment>();
         }
 
         [BsonId]
@@ -62,6 +64,16 @@ namespace StatsCreate
         public void AddSkill(Skill skill)
         {
             Skills.Add(skill);
+        }
+        public void RemoveSkill(Skill skill)
+        {
+            Skills.Remove(skill);
+        }
+        [BsonIgnoreIfNull]
+        List<Equipment> Equipments { get; set; }
+        public void AddEquipment(Equipment equipment)
+        {
+            Equipments.Add(equipment);
         }
     }
 }

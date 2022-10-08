@@ -16,5 +16,9 @@ namespace StatsCreate
 
         public string ItemName { get; set; }
         public int ItemCount { get; set; }
+        /*public override string ToString()
+        {
+            return base.ToString();
+        }*/
     }
 }
