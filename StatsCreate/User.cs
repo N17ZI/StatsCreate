@@ -19,6 +19,7 @@ namespace StatsCreate
             Lvl = lvl;
             Skills = new List<Skill>();
             Items = new List<Item>();
+            Equipments = new List<Equipment>();
         }
         public User(string name, double xp,double lvl)
         {
@@ -27,6 +28,7 @@ namespace StatsCreate
             Lvl = lvl;
             Skills = new List<Skill>();
             Items = new List<Item>();
+            Equipments = new List<Equipment>();
         }
 
         [BsonId]
@@ -63,5 +65,7 @@ namespace StatsCreate
         {
             Skills.Add(skill);
         }
+        [BsonIgnoreIfNull]
+        public List<Equipment> Equipments { get; set; }
     }
 }

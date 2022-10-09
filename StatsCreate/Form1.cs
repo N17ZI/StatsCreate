@@ -229,6 +229,12 @@ namespace StatsCreate
             LoadUserBox();
         }
 
+        private void bEquipment_Click(object sender, EventArgs e)
+        {
+            Form3 EquipmentDialog = new Form3();
+            EquipmentDialog.Show();
+        }
+
         private void LoadUserBox()
         {
             var client = new MongoClient();

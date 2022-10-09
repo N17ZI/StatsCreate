@@ -32,6 +32,7 @@ namespace StatsCreate
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bGet1k = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.nXp = new System.Windows.Forms.NumericUpDown();
@@ -51,7 +52,7 @@ namespace StatsCreate
             this.nIntellicence = new System.Windows.Forms.NumericUpDown();
             this.nStrenght = new System.Windows.Forms.NumericUpDown();
             this.heroBox = new System.Windows.Forms.ComboBox();
-            this.bGet1k = new System.Windows.Forms.Button();
+            this.bEquipment = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nXp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -64,6 +65,7 @@ namespace StatsCreate
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.bEquipment);
             this.panel1.Controls.Add(this.bGet1k);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.label6);
@@ -89,6 +91,16 @@ namespace StatsCreate
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(951, 395);
             this.panel1.TabIndex = 0;
+            // 
+            // bGet1k
+            // 
+            this.bGet1k.Location = new System.Drawing.Point(334, 271);
+            this.bGet1k.Name = "bGet1k";
+            this.bGet1k.Size = new System.Drawing.Size(287, 49);
+            this.bGet1k.TabIndex = 20;
+            this.bGet1k.Text = "Get 1000 XP";
+            this.bGet1k.UseVisualStyleBackColor = true;
+            this.bGet1k.Click += new System.EventHandler(this.bGet1k_Click);
             // 
             // label7
             // 
@@ -269,15 +281,15 @@ namespace StatsCreate
             this.heroBox.TabIndex = 0;
             this.heroBox.SelectedIndexChanged += new System.EventHandler(this.heroBox_SelectedIndexChanged);
             // 
-            // bGet1k
+            // bEquipment
             // 
-            this.bGet1k.Location = new System.Drawing.Point(334, 271);
-            this.bGet1k.Name = "bGet1k";
-            this.bGet1k.Size = new System.Drawing.Size(287, 49);
-            this.bGet1k.TabIndex = 20;
-            this.bGet1k.Text = "Get 1000 XP";
-            this.bGet1k.UseVisualStyleBackColor = true;
-            this.bGet1k.Click += new System.EventHandler(this.bGet1k_Click);
+            this.bEquipment.Location = new System.Drawing.Point(627, 271);
+            this.bEquipment.Name = "bEquipment";
+            this.bEquipment.Size = new System.Drawing.Size(316, 49);
+            this.bEquipment.TabIndex = 21;
+            this.bEquipment.Text = "Equipment";
+            this.bEquipment.UseVisualStyleBackColor = true;
+            this.bEquipment.Click += new System.EventHandler(this.bEquipment_Click);
             // 
             // Form1
             // 
@@ -323,5 +335,6 @@ namespace StatsCreate
         private Label label6;
         private Label label7;
         private Button bGet1k;
+        private Button bEquipment;
     }
 }
