@@ -70,10 +70,6 @@ namespace StatsCreate
             Skills.Remove(skill);
         }
         [BsonIgnoreIfNull]
-        List<Equipment> Equipments { get; set; }
-        public void AddEquipment(Equipment equipment)
-        {
-            Equipments.Add(equipment);
-        }
+        public List<Equipment> Equipments { get; set; }
     }
 }

@@ -46,7 +46,7 @@
             this.Receiver.ItemHeight = 28;
             this.Receiver.Location = new System.Drawing.Point(3, 3);
             this.Receiver.Name = "Receiver";
-            this.Receiver.Size = new System.Drawing.Size(390, 200);
+            this.Receiver.Size = new System.Drawing.Size(390, 368);
             this.Receiver.TabIndex = 1;
             this.Receiver.Click += new System.EventHandler(this.Receiver_Click);
             this.Receiver.SelectedValueChanged += new System.EventHandler(this.Receiver_SelectedValueChanged);
@@ -57,12 +57,13 @@
             this.Sender.FormattingEnabled = true;
             this.Sender.ItemHeight = 28;
             this.Sender.Items.AddRange(new object[] {
-            "Sword",
-            "Shiva",
-            "Blade_Helmet"});
+            "Epic Sword(Weapon)",
+            "Lava Axe(Weapon)",
+            "Shiva`s guard(Armor)",
+            "Blade_Helmet(Helmet)"});
             this.Sender.Location = new System.Drawing.Point(3, 3);
             this.Sender.Name = "Sender";
-            this.Sender.Size = new System.Drawing.Size(390, 200);
+            this.Sender.Size = new System.Drawing.Size(390, 368);
             this.Sender.TabIndex = 0;
             this.Sender.Click += new System.EventHandler(this.Sender_Click);
             // 

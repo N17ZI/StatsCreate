@@ -48,7 +48,6 @@ namespace StatsCreate
             var collection = database.GetCollection<User>("Users");
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
 
-            Console.WriteLine($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
             MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
         }
         public static void ReplaceByName(string name, User user1)
