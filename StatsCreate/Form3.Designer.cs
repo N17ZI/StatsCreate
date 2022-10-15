@@ -46,9 +46,10 @@
             this.Receiver.ItemHeight = 28;
             this.Receiver.Location = new System.Drawing.Point(3, 3);
             this.Receiver.Name = "Receiver";
-            this.Receiver.Size = new System.Drawing.Size(390, 368);
+            this.Receiver.Size = new System.Drawing.Size(390, 200);
             this.Receiver.TabIndex = 1;
             this.Receiver.Click += new System.EventHandler(this.Receiver_Click);
+            this.Receiver.SelectedIndexChanged += new System.EventHandler(this.Receiver_SelectedIndexChanged);
             this.Receiver.SelectedValueChanged += new System.EventHandler(this.Receiver_SelectedValueChanged);
             // 
             // Sender
@@ -61,7 +62,7 @@
             "Lava Axe(Weapon)",
             "Shiva`s guard(Armor)",
             "Blade_Helmet(Helmet)"});
-            this.Sender.Location = new System.Drawing.Point(3, 3);
+            this.Sender.Location = new System.Drawing.Point(7, 3);
             this.Sender.Name = "Sender";
             this.Sender.Size = new System.Drawing.Size(390, 368);
             this.Sender.TabIndex = 0;

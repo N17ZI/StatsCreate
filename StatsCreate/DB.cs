@@ -34,10 +34,10 @@ namespace StatsCreate
             var database = client.GetDatabase("CurrentlyDB");
             var collection = database.GetCollection<User>("Users");
             var list = collection.Find(x => true).ToList();
-            foreach (var item in list)
+            /*foreach (var item in list)
             {
                 MessageBox.Show($" {item?.Name} {item?.Type} {item?.Strength} {item?.Dexterity} {item?.Constitution} {item?.Intellicence}");
-            }
+            }*/
 
         }
 
@@ -48,7 +48,7 @@ namespace StatsCreate
             var collection = database.GetCollection<User>("Users");
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
 
-            MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
+            //MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
         }
         public static void ReplaceByName(string name, User user1)
         {

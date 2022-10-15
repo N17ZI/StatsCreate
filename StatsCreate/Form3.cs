@@ -54,7 +54,6 @@ namespace StatsCreate
                 s[i] = Receiver.Items[i].ToString();
                 Equipment equipment = new Equipment(s[i]);
                 DB.Find(SendBetween.Username);
-                MessageBox.Show(SendBetween.Username);
                 var client = new MongoClient();
                 var database = client.GetDatabase("CurrentlyDB");
                 var collection = database.GetCollection<User>("Users");
@@ -69,19 +68,26 @@ namespace StatsCreate
         }
         public void GetData()
         {
-            string[] r;
-            r = new string[3];
-            for (int i = 0; i < 3; i++)
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var one = collection.Find(x => x.Name == SendBetween.Username).FirstOrDefault();
+            if (one.Equipments.Count != 0)
             {
-                Equipment equipment = new Equipment(r[i]);
-                var client = new MongoClient();
-                var database = client.GetDatabase("CurrentlyDB");
-                var collection = database.GetCollection<User>("Users");
-                var one = collection.Find(x => x.Name == SendBetween.Username).FirstOrDefault();
-                r[i] = (Convert.ToString(one?.Equipments));
-                Receiver.Items.Add(equipment);
-                MessageBox.Show(r[i]);
+                foreach (var item in one.Equipments)
+                {
+                    Receiver.Items.Add(item);
+                    if (!Sender.Items.Contains(item))
+                    {
+                        Sender.Items.Remove(item);
+                    }
+                }
             }
+        }
+
+        private void Receiver_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -14,5 +14,9 @@ namespace StatsCreate
         }
 
         public string EquipmentName { get; set; }
+        public override string ToString()
+        {
+            return this.EquipmentName;
+        }
     }
 }

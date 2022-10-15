@@ -169,16 +169,8 @@ namespace StatsCreate
 
         private void bAdd_Click(object sender, EventArgs e)
         {
-            const string caption = "Items";
-            var result = MessageBox.Show("Add pen to inventory selected hero?", caption ,MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                Inventory();
-            }
-            if(result == DialogResult.No)
-            {
-                MessageBox.Show("Cancelled");
-            }
+            Inventory InventoryDialog = new Inventory();
+            InventoryDialog.Show();
         }
 
         private void bLevelUP_Click(object sender, EventArgs e)
