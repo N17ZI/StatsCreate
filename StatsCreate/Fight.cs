@@ -17,7 +17,6 @@ namespace StatsCreate
         {
             InitializeComponent();
         }
-        int s = 3;
         private void bReady_Click(object sender, EventArgs e)
         {
             fillTeam();
@@ -32,8 +31,8 @@ namespace StatsCreate
             var list = collection.Find(x => x.Type == type[0]).ToList();
             foreach (var item in list)
             {
-                dataGridView1.Rows[0].Cells[0].Value = item?.Name;
-               
+                dataGridView1.Rows.Add(item?.Name,item?.Type, item?.Strength, item?.Dexterity);
+                dataGridView2.Rows.Add(item?.Name, item?.Type, item?.Strength, item?.Dexterity);
             }
         }
     }
