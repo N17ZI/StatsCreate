@@ -67,6 +67,7 @@
             this.Sender.Size = new System.Drawing.Size(390, 368);
             this.Sender.TabIndex = 0;
             this.Sender.Click += new System.EventHandler(this.Sender_Click);
+            this.Sender.SelectedIndexChanged += new System.EventHandler(this.Sender_SelectedIndexChanged);
             // 
             // splitContainer1
             // 

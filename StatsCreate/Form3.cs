@@ -89,5 +89,10 @@ namespace StatsCreate
         {
 
         }
+
+        private void Sender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

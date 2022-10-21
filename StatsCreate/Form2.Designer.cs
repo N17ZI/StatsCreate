@@ -39,8 +39,6 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.pts = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bColdSnap
@@ -142,39 +140,17 @@
             // 
             this.pts.AutoSize = true;
             this.pts.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.pts.Location = new System.Drawing.Point(108, 130);
+            this.pts.Location = new System.Drawing.Point(12, 130);
             this.pts.Name = "pts";
             this.pts.Size = new System.Drawing.Size(23, 28);
             this.pts.TabIndex = 10;
             this.pts.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 130);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 28);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "You have";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(137, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 28);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "point";
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(343, 167);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.pts);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
@@ -206,7 +182,5 @@
         private Button button9;
         private Button button10;
         private Label pts;
-        private Label label1;
-        private Label label2;
     }
 }

@@ -57,5 +57,25 @@ namespace StatsCreate
             var collection = database.GetCollection<User>("Users");
             collection.ReplaceOne(x => x.Name == name, user1);
         }
+        public static void FindTypeHero(string type)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var one = collection.Find(x => x.Type == type).FirstOrDefault();
+
+            MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
+        }
+        public static void FindTypeHeros(string type)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var list = collection.Find(x => x.Type == type).ToList();
+            foreach (var item in list)
+            {
+                MessageBox.Show($" {item?.Name} {item?.Type} {item?.Strength} {item?.Dexterity} {item?.Constitution} {item?.Intellicence}");
+            }
+        }
     }
 }

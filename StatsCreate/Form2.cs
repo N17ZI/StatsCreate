@@ -16,6 +16,7 @@ namespace StatsCreate
     {
         public Form2()
         {
+            string words = "You have points in count = ";
             InitializeComponent();
             double Points = Convert.ToDouble(SendBetween.exp);
             pts.Text = words + Convert.ToString(Math.Round(Points / 3000));
