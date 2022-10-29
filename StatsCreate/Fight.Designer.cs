@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cTeamB = new System.Windows.Forms.ComboBox();
+            this.cTeamA = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,11 +45,7 @@
             this.HP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Armor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bReady = new System.Windows.Forms.Button();
-            this.cTeamA = new System.Windows.Forms.ComboBox();
-            this.cTeamB = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.bAuto = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -53,6 +54,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.bAuto);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -66,6 +68,62 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(690, -1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 28);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Team B";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(477, -1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 28);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Team A";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(604, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 28);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "VS";
+            // 
+            // cTeamB
+            // 
+            this.cTeamB.FormattingEnabled = true;
+            this.cTeamB.Items.AddRange(new object[] {
+            "Warrior`s",
+            "Rogue`s",
+            "Wizard`s"});
+            this.cTeamB.Location = new System.Drawing.Point(667, 30);
+            this.cTeamB.Name = "cTeamB";
+            this.cTeamB.Size = new System.Drawing.Size(121, 23);
+            this.cTeamB.TabIndex = 4;
+            this.cTeamB.Text = "AUTO";
+            // 
+            // cTeamA
+            // 
+            this.cTeamA.FormattingEnabled = true;
+            this.cTeamA.Items.AddRange(new object[] {
+            "Warrior`s",
+            "Rogue`s",
+            "Wizard`s"});
+            this.cTeamA.Location = new System.Drawing.Point(453, 30);
+            this.cTeamA.Name = "cTeamA";
+            this.cTeamA.Size = new System.Drawing.Size(121, 23);
+            this.cTeamA.TabIndex = 3;
+            this.cTeamA.Text = "AUTO";
             // 
             // dataGridView2
             // 
@@ -145,61 +203,15 @@
             this.bReady.UseVisualStyleBackColor = true;
             this.bReady.Click += new System.EventHandler(this.bReady_Click);
             // 
-            // cTeamA
+            // bAuto
             // 
-            this.cTeamA.FormattingEnabled = true;
-            this.cTeamA.Items.AddRange(new object[] {
-            "Warrior`s",
-            "Rogue`s",
-            "Wizard`s",
-            "AUTO"});
-            this.cTeamA.Location = new System.Drawing.Point(453, 30);
-            this.cTeamA.Name = "cTeamA";
-            this.cTeamA.Size = new System.Drawing.Size(121, 23);
-            this.cTeamA.TabIndex = 3;
-            // 
-            // cTeamB
-            // 
-            this.cTeamB.FormattingEnabled = true;
-            this.cTeamB.Items.AddRange(new object[] {
-            "Warrior`s",
-            "Rogue`s",
-            "Wizard`s",
-            "AUTO"});
-            this.cTeamB.Location = new System.Drawing.Point(667, 30);
-            this.cTeamB.Name = "cTeamB";
-            this.cTeamB.Size = new System.Drawing.Size(121, 23);
-            this.cTeamB.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(604, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 28);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "VS";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(477, -1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 28);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Team A";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(690, -1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 28);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Team B";
+            this.bAuto.Location = new System.Drawing.Point(453, 292);
+            this.bAuto.Name = "bAuto";
+            this.bAuto.Size = new System.Drawing.Size(335, 67);
+            this.bAuto.TabIndex = 8;
+            this.bAuto.Text = "Auto fill";
+            this.bAuto.UseVisualStyleBackColor = true;
+            this.bAuto.Click += new System.EventHandler(this.bAuto_Click);
             // 
             // Fight
             // 
@@ -236,5 +248,6 @@
         private ComboBox cTeamA;
         private Label label3;
         private Label label2;
+        private Button bAuto;
     }
 }

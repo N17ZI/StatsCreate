@@ -22,12 +22,13 @@ namespace StatsCreate
         }
         private void bUpdate_Click(object sender, EventArgs e)
         {
+            DB.FindAttributes(UserBox.Text);
             User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
                                                             Convert.ToDouble(nXp.Text),
-                                                            1);
+                                                            1, SendBetween.Damage, SendBetween.HP, SendBetween.Armor, SendBetween.MP, SendBetween.MAH);
 
             DB.ReplaceByName(UserBox.Text, user);
             ExchangeData();
@@ -105,9 +106,8 @@ namespace StatsCreate
                 s1 = Convert.ToDouble(nStrenght.Text);
                 s2 = Convert.ToDouble(nDexterity.Text);
                 s3 = Convert.ToDouble(nConstitution.Text);
-                s4 = Convert.ToDouble(nIntellicence.Text);
-                User user = new User(name, type, s1, s2, s3, s4, xp, lvl);
-                DB.AddToDB(user);
+                s4 = Convert.ToDouble(nIntellicence.Text); 
+                
                 if (heroBox.SelectedItem.ToString() == "Warrior")
                 {
                     double Damage = s1 * 5 + s2 + s3 / 10;
@@ -125,8 +125,8 @@ namespace StatsCreate
                     double MAH = s4 * 1;
                     tMAH.Text = MAH.ToString();
 
-                    /*User user = new User(name, type, s1, s2, s3, s4, xp, lvl, Damage, HP, Armor, MP, MAH);
-                    */
+                    User warrior = new User(name, type, s1, s2, s3, s4, xp, lvl, Damage, HP, Armor, MP, MAH);
+                    DB.AddToDB(warrior);
                     MessageBox.Show($"HP - {HP}\nDamage - {Damage}\nArmor - {Armor}\nMana - {MP}\nMagicDamage - {MAH}", caption: "Warrior");
                 }
                 if (heroBox.SelectedItem.ToString() == "Rogue")
@@ -146,6 +146,8 @@ namespace StatsCreate
                     double MAH = s4 * 2;
                     tMAH.Text = MAH.ToString();
 
+                    User rogue = new User(name, type, s1, s2, s3, s4, xp, lvl, Damage, HP, Armor, MP, MAH);
+                    DB.AddToDB(rogue);
                     MessageBox.Show($"HP - {HP}\nDamage - {Damage}\nArmor - {Armor}\nMana - {MP}\nMagicDamage - {MAH}", caption: "Rogue");
                 }
                 if (heroBox.SelectedItem.ToString() == "Wizard")
@@ -165,9 +167,11 @@ namespace StatsCreate
                     double MAH = s4 * 5;
                     tMAH.Text = MAH.ToString();
 
+                    User wizard = new User(name, type, s1, s2, s3, s4, xp, lvl, Damage, HP, Armor, MP, MAH);
+                    DB.AddToDB(wizard);
                     MessageBox.Show($"HP - {HP}\nDamage - {Damage}\nArmor - {Armor}\nMana - {MP}\nMagicDamage - {MAH}", caption: "Wizard");
                 }
-                
+
                 
                 LoadUserBox();
             }
@@ -221,33 +225,17 @@ namespace StatsCreate
                 bLevelUP.Visible = false;
             }
         }
-        /*public void Inventory()
-        {
-            var client = new MongoClient();
-            var database = client.GetDatabase("CurrentlyDB");
-            var collection = database.GetCollection<User>("Users");
-            string name = UserBox.Text;
-
-            User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
-                                                            Convert.ToDouble(nDexterity.Text),
-                                                            Convert.ToDouble(nConstitution.Text),
-                                                            Convert.ToDouble(nIntellicence.Text),
-                                                            Convert.ToDouble(nXp.Text), 1
-                                                            );
-            user.AddItem(new Item("Pen", 5));
-
-            DB.ReplaceByName(UserBox.Text, user);
-        }*/
 
         private void bGet1k_Click(object sender, EventArgs e)
         {
             nXp.Value += 1000;
+            DB.FindAttributes(UserBox.Text);
             User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
-                                                            Convert.ToDouble(nXp.Text), r++
-                                                            );
+                                                            Convert.ToDouble(nXp.Text), r++,
+                                                            SendBetween.Damage, SendBetween.HP, SendBetween.Armor, SendBetween.MP, SendBetween.MAH);
             DB.ReplaceByName(UserBox.Text, user);
             LoadUserBox();
         }
@@ -337,10 +325,22 @@ namespace StatsCreate
         }
         public void LvlUp()
         {
-            
-            if (nXp.Value >= 3000)
+            DB.FindAttributes(UserBox.Text);
+            int a = Convert.ToInt32(nXp.Value);
+            int currentExp = 1000;
+            for(int i = lvl; currentExp < a; i++)
+            {
+                int alba = (i * 1000);
+                currentExp= alba + 1000;
+            }
+            if (nXp.Value >= p)
             {
                 
+                n = (lvl * 1000) + 1000;
+                lvl++;
+            }
+
+             // (lvl * 1000) + 1000
                 for (int exp = Convert.ToInt32(nXp.Value); exp > 1000; exp--)
                 {
                     double dad = r++;
@@ -349,8 +349,8 @@ namespace StatsCreate
                                                             Convert.ToDouble(nDexterity.Text),
                                                             Convert.ToDouble(nConstitution.Text),
                                                             Convert.ToDouble(nIntellicence.Text),
-                                                            exp, dad
-                                                            );
+                                                            exp, dad,
+                                                            SendBetween.Damage, SendBetween.HP, SendBetween.Armor, SendBetween.MP, SendBetween.MAH);
                     DB.ReplaceByName(UserBox.Text, user);
                 }
             }

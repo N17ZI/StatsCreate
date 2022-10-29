@@ -7,7 +7,7 @@ namespace StatsCreate
     internal class User
     {
         public User(string name,string type,double strength, double dexterity, double constitution,
-            double intellicence,double xp,double lvl/*,double damage,double hp,double armor,double mp,double mah*/)
+            double intellicence,double xp,double lvl, double damage, double hp, double armor, double mp, double mah)
         {
             this.Name = name;
             Type = type;
@@ -19,11 +19,11 @@ namespace StatsCreate
             Xp = xp;
             Lvl = lvl;
 
-            /*Damage = damage;
+            Damage = damage;
             HP = hp;
             Armor = armor;
             MP = mp;
-            MAH = mah;*/
+            MAH = mah;
 
             Skills = new List<Skill>();
             Items = new List<Item>();
@@ -49,11 +49,16 @@ namespace StatsCreate
         [BsonElement("type")]
         [BsonIgnoreIfNull]
         public string Type { get; set; }
-        /*public double HP { get; set; }
+        [BsonIgnoreIfNull]
+        public double HP { get; set; }
+        [BsonIgnoreIfNull]
         public double MP { get; set; }
+        [BsonIgnoreIfNull]
         public double Damage { get; set; }
+        [BsonIgnoreIfNull]
         public double Armor { get; set; }
-        public double MAH { get; set; }*/
+        [BsonIgnoreIfNull]
+        public double MAH { get; set; }
 
         [BsonIgnoreIfNull]
         public double Lvl { get; set; }

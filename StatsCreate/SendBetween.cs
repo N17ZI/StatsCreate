@@ -26,5 +26,7 @@ namespace StatsCreate
 
         public static double pts;
         public static double lvl;
+
+        public static int cnt;
     }
 }

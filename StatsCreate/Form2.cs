@@ -29,7 +29,8 @@ namespace StatsCreate
                                                             Convert.ToDouble(SendBetween.constit),
                                                             Convert.ToDouble(SendBetween.intellect),
                                                             Convert.ToDouble(SendBetween.exp), 
-                                                            Convert.ToDouble(SendBetween.lvl));
+                                                            Convert.ToDouble(SendBetween.lvl),
+                                                            SendBetween.Damage,SendBetween.HP,SendBetween.Armor,SendBetween.MP,SendBetween.MAH);
         public void Check()
         {
             if(Up == 0)

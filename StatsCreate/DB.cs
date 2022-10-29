@@ -25,6 +25,7 @@ namespace StatsCreate
             var database = client.GetDatabase("CurrentlyDB");
             var collection = database.GetCollection<User>("Users");
             collection.InsertOne(user);
+            
         }
 
         
@@ -38,7 +39,8 @@ namespace StatsCreate
             {
                 MessageBox.Show($" {item?.Name} {item?.Type} {item?.Strength} {item?.Dexterity} {item?.Constitution} {item?.Intellicence}");
             }*/
-
+            var cnt1 = collection.Count(x => true);
+            SendBetween.cnt = Convert.ToInt32(cnt1);
         }
 
         public static void Find(string name)
@@ -48,6 +50,21 @@ namespace StatsCreate
             var collection = database.GetCollection<User>("Users");
             var one = collection.Find(x => x.Name == name).FirstOrDefault();
 
+            
+            /* MessageBox.Show($" {one.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");*/
+        }
+        public static void FindAttributes(string name)
+        {
+            var client = new MongoClient();
+            var database = client.GetDatabase("CurrentlyDB");
+            var collection = database.GetCollection<User>("Users");
+            var one = collection.Find(x => x.Name == name).FirstOrDefault();
+            
+            SendBetween.Damage = one.Damage;
+            SendBetween.HP = one.HP;
+            SendBetween.Armor = one.Armor;
+            SendBetween.MAH = one.MAH;
+            SendBetween.MP = one.MP;
             //MessageBox.Show($" {one?.Name} {one?.Type} {one?.Strength} {one?.Dexterity} {one?.Constitution} {one?.Intellicence}");
         }
         public static void ReplaceByName(string name, User user1)
