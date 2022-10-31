@@ -7,6 +7,7 @@ namespace StatsCreate
     {
         double s1, s2, s3, s4;
         static double r = 1;
+        public int lvl = 1;
         public Form1()
         {
             InitializeComponent();
@@ -172,7 +173,7 @@ namespace StatsCreate
                     MessageBox.Show($"HP - {HP}\nDamage - {Damage}\nArmor - {Armor}\nMana - {MP}\nMagicDamage - {MAH}", caption: "Wizard");
                 }
 
-                
+                LvlUp();
                 LoadUserBox();
             }
             catch
@@ -230,13 +231,7 @@ namespace StatsCreate
         {
             nXp.Value += 1000;
             DB.FindAttributes(UserBox.Text);
-            User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
-                                                            Convert.ToDouble(nDexterity.Text),
-                                                            Convert.ToDouble(nConstitution.Text),
-                                                            Convert.ToDouble(nIntellicence.Text),
-                                                            Convert.ToDouble(nXp.Text), r++,
-                                                            SendBetween.Damage, SendBetween.HP, SendBetween.Armor, SendBetween.MP, SendBetween.MAH);
-            DB.ReplaceByName(UserBox.Text, user);
+            bUpdate_Click(sender, e);
             LoadUserBox();
         }
 
@@ -326,38 +321,27 @@ namespace StatsCreate
         public void LvlUp()
         {
             DB.FindAttributes(UserBox.Text);
-            int a = Convert.ToInt32(nXp.Value);
-            int currentExp = 1000;
-            for(int i = lvl; currentExp < a; i++)
+            for(int i = 0;i < 1;i++)
             {
-                int alba = (i * 1000);
-                currentExp= alba + 1000;
-            }
-            if (nXp.Value >= p)
-            {
-                
-                n = (lvl * 1000) + 1000;
-                lvl++;
-            }
-
-             // (lvl * 1000) + 1000
-                for (int exp = Convert.ToInt32(nXp.Value); exp > 1000; exp--)
+                if (nXp.Value >= (lvl * 1000) + 1000)
                 {
-                    double dad = r++;
-                    exp -= 1000;
-                    User user = new User(UserBox.Text, heroBox.Text, Convert.ToDouble(nStrenght.Text),
-                                                            Convert.ToDouble(nDexterity.Text),
-                                                            Convert.ToDouble(nConstitution.Text),
-                                                            Convert.ToDouble(nIntellicence.Text),
-                                                            exp, dad,
-                                                            SendBetween.Damage, SendBetween.HP, SendBetween.Armor, SendBetween.MP, SendBetween.MAH);
-                    DB.ReplaceByName(UserBox.Text, user);
+                    lvl++;
+                    i--;
+                    var client = new MongoClient();
+                    var database = client.GetDatabase("CurrentlyDB");
+                    var collection = database.GetCollection<User>("Users");
+                    var one = collection.Find(x => x.Name == UserBox.Text).FirstOrDefault();
+                    
+                    var updateEXP1000 = Builders<User>.Update.Set("Xp", Convert.ToInt32(nXp.Value)).Set("Lvl",
+                        Convert.ToInt32(lvl));
+                    collection.UpdateOne(x => x.Name == UserBox.Text, updateEXP1000);
+                }
+                else
+                {
+                    nXp.Value = (lvl * 1000) + 1000;
                 }
             }
-            else
-            {
-                
-            }
+            // (lvl * 1000) + 1000
         }
         public void ExchangeData()
         {
