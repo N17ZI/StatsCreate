@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MongoDB.Driver;
 
 namespace StatsCreate
 {
@@ -16,9 +17,14 @@ namespace StatsCreate
         {
             InitializeComponent();
             labelchange();
+            bSave.Visible = false;
+            chkd();
         }
         int x = 0;
-
+        public void chkd()
+        {
+            
+        }
         private void listView1_ItemActivate(object sender, EventArgs e)
         {
             ListView.SelectedIndexCollection indices = listView1.SelectedIndices;
@@ -121,6 +127,7 @@ namespace StatsCreate
                     {
                         string gradeDamage = listView2.Items[i].SubItems[x + 2].Text;
                         lbDamage.Text += "+" + (gradeDamage);
+                        bSave.Visible = true;
                     }
                     if (listView2.Items[i].SubItems[x + 1].Text == "Helmet" && Convert.ToInt32(listView2.Items[0].SubItems[x + 2].Text) <=
                         Convert.ToInt32(SendBetween.strenght) && Convert.ToInt32(listView2.Items[0].SubItems[x + 3].Text) <=
@@ -131,6 +138,7 @@ namespace StatsCreate
                         string gradeHelmet = listView2.Items[i].SubItems[x + 2].Text;
                         lbArmor.Text += "+" + (gradeHelmet);
                         lbMana.Text += "+" + (gradeHelmet);
+                        bSave.Visible = true;
                     }
                     if (listView2.Items[i].SubItems[x + 1].Text == "Armor" && Convert.ToInt32(listView2.Items[0].SubItems[x + 2].Text) <=
                         Convert.ToInt32(SendBetween.strenght) && Convert.ToInt32(listView2.Items[0].SubItems[x + 3].Text) <=
@@ -140,8 +148,9 @@ namespace StatsCreate
                     {
                         string gradeArmor = listView2.Items[i].SubItems[x + 2].Text;
                         lbArmor.Text += "+" + (gradeArmor);
+                        bSave.Visible = true;
                     }
-                    else { MessageBox.Show("Dont have enought stats"); }
+                    else { MessageBox.Show("Dont have enought stats"); bSave.Visible = false; }
                 }
             }
             else if(listView2.Items.Count == 0)
@@ -154,6 +163,27 @@ namespace StatsCreate
         {
             checkUpgrade();
         }
-    }
 
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            string s = "";
+            int i = 0;
+            foreach(var item in listView2.Items)
+            {
+                
+                s = listView2.Items[i].SubItems[0].Text;
+                Equipment equipment = new Equipment(s);
+
+                DB.Find(SendBetween.Username);
+
+                var client = new MongoClient();
+                var database = client.GetDatabase("CurrentlyDB");
+                var collection = database.GetCollection<User>("Users");
+                var update = Builders<User>.Update.Push("Equipments", equipment);
+                collection.UpdateOne(x => x.Name == SendBetween.Username, update);
+
+                i++;
+            }
+        }
+    }
 }

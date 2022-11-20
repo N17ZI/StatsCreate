@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bAutoFill = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cTeamB = new System.Windows.Forms.ComboBox();
+            this.cTeamA = new System.Windows.Forms.ComboBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,19 +46,20 @@
             this.HP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Armor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bReady = new System.Windows.Forms.Button();
-            this.cTeamA = new System.Windows.Forms.ComboBox();
-            this.cTeamB = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.dataGridView3);
+            this.panel1.Controls.Add(this.bAutoFill);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
@@ -66,6 +73,72 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(800, 450);
             this.panel1.TabIndex = 0;
+            // 
+            // bAutoFill
+            // 
+            this.bAutoFill.Location = new System.Drawing.Point(453, 300);
+            this.bAutoFill.Name = "bAutoFill";
+            this.bAutoFill.Size = new System.Drawing.Size(335, 59);
+            this.bAutoFill.TabIndex = 8;
+            this.bAutoFill.Text = "Auto Fill";
+            this.bAutoFill.UseVisualStyleBackColor = true;
+            this.bAutoFill.Click += new System.EventHandler(this.bAutoFill_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(690, -1);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 28);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Team B";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(477, -1);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 28);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Team A";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(604, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 28);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "VS";
+            // 
+            // cTeamB
+            // 
+            this.cTeamB.FormattingEnabled = true;
+            this.cTeamB.Items.AddRange(new object[] {
+            "Warrior`s",
+            "Rogue`s",
+            "Wizard`s",
+            "AUTO"});
+            this.cTeamB.Location = new System.Drawing.Point(667, 30);
+            this.cTeamB.Name = "cTeamB";
+            this.cTeamB.Size = new System.Drawing.Size(121, 23);
+            this.cTeamB.TabIndex = 4;
+            // 
+            // cTeamA
+            // 
+            this.cTeamA.FormattingEnabled = true;
+            this.cTeamA.Items.AddRange(new object[] {
+            "Warrior`s",
+            "Rogue`s",
+            "Wizard`s",
+            "AUTO"});
+            this.cTeamA.Location = new System.Drawing.Point(453, 30);
+            this.cTeamA.Name = "cTeamA";
+            this.cTeamA.Size = new System.Drawing.Size(121, 23);
+            this.cTeamA.TabIndex = 3;
             // 
             // dataGridView2
             // 
@@ -145,61 +218,27 @@
             this.bReady.UseVisualStyleBackColor = true;
             this.bReady.Click += new System.EventHandler(this.bReady_Click);
             // 
-            // cTeamA
+            // dataGridView3
             // 
-            this.cTeamA.FormattingEnabled = true;
-            this.cTeamA.Items.AddRange(new object[] {
-            "Warrior`s",
-            "Rogue`s",
-            "Wizard`s",
-            "AUTO"});
-            this.cTeamA.Location = new System.Drawing.Point(453, 30);
-            this.cTeamA.Name = "cTeamA";
-            this.cTeamA.Size = new System.Drawing.Size(121, 23);
-            this.cTeamA.TabIndex = 3;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dataGridView3.Location = new System.Drawing.Point(453, 77);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowTemplate.Height = 25;
+            this.dataGridView3.Size = new System.Drawing.Size(335, 217);
+            this.dataGridView3.TabIndex = 9;
             // 
-            // cTeamB
+            // dataGridViewTextBoxColumn5
             // 
-            this.cTeamB.FormattingEnabled = true;
-            this.cTeamB.Items.AddRange(new object[] {
-            "Warrior`s",
-            "Rogue`s",
-            "Wizard`s",
-            "AUTO"});
-            this.cTeamB.Location = new System.Drawing.Point(667, 30);
-            this.cTeamB.Name = "cTeamB";
-            this.cTeamB.Size = new System.Drawing.Size(121, 23);
-            this.cTeamB.TabIndex = 4;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Username";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // label1
+            // dataGridViewTextBoxColumn6
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(604, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 28);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "VS";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(477, -1);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 28);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Team A";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(690, -1);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 28);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Team B";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Lvl";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             // 
             // Fight
             // 
@@ -213,6 +252,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -236,5 +276,9 @@
         private ComboBox cTeamA;
         private Label label3;
         private Label label2;
+        private Button bAutoFill;
+        private DataGridView dataGridView3;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }

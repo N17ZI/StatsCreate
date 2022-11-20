@@ -523,6 +523,7 @@
             this.bSave.TabIndex = 13;
             this.bSave.Text = "Save";
             this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // label1
             // 

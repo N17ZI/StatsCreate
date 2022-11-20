@@ -13,9 +13,17 @@ namespace StatsCreate
 {
     public partial class Fight : Form
     {
+        int FirstTeam = 0;
+        int SecondTeam = 0;
+        int PreviousLvl;
+        Dictionary<string, int> user = new Dictionary<string, int>();
+        static MongoClient client = new MongoClient();
+        static IMongoDatabase database = client.GetDatabase("CurrentlyDB");
+        static IMongoCollection<User> collection = database.GetCollection<User>("Users");
         public Fight()
         {
             InitializeComponent();
+            FindAllCharacters(dataGridView3);
         }
         int s,b;
         private void bReady_Click(object sender, EventArgs e)
@@ -29,6 +37,73 @@ namespace StatsCreate
             if (cTeamB.Text == "Wizard`s") { b = 2; }
             if (cTeamB.Text == "AUTO") { b = 3; }
             fillTeam();
+        }
+        public void FindAllCharacters(DataGridView list)
+        {
+            List<User> characters = collection.AsQueryable().ToList<User>();
+            foreach (var item in characters)
+            {
+                user.Add(item.Name, Convert.ToInt32(item.Lvl));
+            }
+            foreach (var pair in user.OrderBy(pair => pair.Value).Reverse())
+            {
+                dataGridView3.Rows.Add(pair.ToString());
+            }
+        }
+
+        private void bAutoFill_Click(object sender, EventArgs e)
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView2.Rows.Clear();
+            FirstTeam = 0;
+            SecondTeam = 0;
+            Random rnd = new Random();
+            int a = rnd.Next(2);
+
+            if (dataGridView3.Rows.Count != 0)
+            {
+                foreach (var pair in user.OrderBy(pair => pair.Value).Reverse())
+                {
+
+                    if (FirstTeam > SecondTeam)
+                    {
+                        dataGridView2.Rows.Add(pair);
+                        SecondTeam += pair.Value;
+                    }
+                    else if (SecondTeam > FirstTeam)
+                    {
+                        dataGridView1.Rows.Add(pair);
+                        FirstTeam += pair.Value;
+                    }
+
+                    else
+                    {
+                        if (a == 1)
+                        {
+                            dataGridView1.Rows.Add(pair);
+                            FirstTeam += pair.Value;
+                        }
+
+                        else
+                        {
+                            dataGridView2.Rows.Add(pair);
+                            SecondTeam += pair.Value;
+                        }
+                    }
+/*                    dataGridView3.Rows.Remove(pair);*/
+                }
+                if (FirstTeam - SecondTeam >= 10 || SecondTeam - FirstTeam >= 10)
+                {
+                    MessageBox.Show("Невозможно создать сбалансированные команды!");
+                    dataGridView1.Rows.Clear();
+                    dataGridView2.Rows.Clear();
+                }
+            }
+
+            else
+            {
+                MessageBox.Show($"Нету доступных юнитов");
+            }
         }
 
         public void fillTeam()
